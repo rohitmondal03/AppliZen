@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react"
 
-export default function DashboardPabe() {
+export default function DashboardPage() {
   return (
     <div>
       DashboardPage

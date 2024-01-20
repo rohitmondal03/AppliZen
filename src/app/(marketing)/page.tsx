@@ -7,6 +7,7 @@ export default function HomePage() {
     <section>
       <button onClick={() => signIn("github", {callbackUrl: "/dashboard"})}>Github</button>
       <button onClick={() => signIn("discord", {callbackUrl: "/dashboard"})}>Discord</button>
+      <button onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>Google</button>
     </section>
   );
 }

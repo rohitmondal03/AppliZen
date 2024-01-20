@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 
-import { WEBSITE_DESC, WEBSITE_KEYWORDS, WEBSITE_LINK, WEBSITE_TITLE } from "./website-details.config";
-import { TWITTER_USERNAME } from "./personal-details.config"
+import { WEBSITE_DESC, WEBSITE_KEYWORDS, WEBSITE_LINK, WEBSITE_TITLE } from "./website-data.config";
+import { TWITTER_USERNAME } from "./personal-data.config"
 
 
 export const RootMetadata: Metadata = {

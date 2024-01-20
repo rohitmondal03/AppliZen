@@ -10,8 +10,8 @@ export default withAuth(
     const isAuth = !!token
     const dashboardPath = req.nextUrl.pathname === "/dashboard";
     const isAuthPage =
-      req.nextUrl.pathname === "/login" ||
-      req.nextUrl.pathname === "/register"
+      req.nextUrl.pathname === "/auth/login" ||
+      req.nextUrl.pathname === "/auth/register"
 
 
     if (isAuth && isAuthPage) {
@@ -19,7 +19,7 @@ export default withAuth(
     }
 
     if (!isAuth && dashboardPath) {
-      return NextResponse.redirect(new URL(`/register`, req.url));
+      return NextResponse.redirect(new URL(`/auth`, req.url));
     }
   },
   {
@@ -35,5 +35,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/register/:path*", "/login/:path*"],
+  matcher: ["/dashboard/:path*", "/auth/register/", "/auth/login/"],
 }
