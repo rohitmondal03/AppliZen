@@ -2,26 +2,24 @@ import { getToken } from "next-auth/jwt"
 import { type NextRequestWithAuth, withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 
+// export { default } from "next-auth/middleware"
+
 export default withAuth(
   async function middleware(req: NextRequestWithAuth) {
     const token = await getToken({ req })
     const isAuth = !!token
+    const dashboardPath = req.nextUrl.pathname === "/dashboard";
     const isAuthPage =
-      req.nextUrl.pathname.startsWith("/login") ||
-      req.nextUrl.pathname.startsWith("/register")
+      req.nextUrl.pathname === "/login" ||
+      req.nextUrl.pathname === "/register"
 
-    if (isAuthPage) {
-      if (isAuth) {
-        return NextResponse.redirect(new URL("/dashboard", req.url))
-      }
 
-      return null
+    if (isAuth && isAuthPage) {
+      return NextResponse.redirect(new URL("/dashboard", req.url))
     }
 
-    if (isAuth) {
-      return NextResponse.redirect(
-        new URL(`/register`, req.url)
-      );
+    if (!isAuth && dashboardPath) {
+      return NextResponse.redirect(new URL(`/register`, req.url));
     }
   },
   {
@@ -37,5 +35,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/dashboard/:path*", "/register/:path*", "/login/:path*"],
 }

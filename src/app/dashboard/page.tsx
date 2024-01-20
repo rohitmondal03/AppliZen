@@ -1,7 +1,14 @@
-import React from 'react'
+"use client"
+
+import { signOut } from "next-auth/react"
 
 export default function DashboardPabe() {
   return (
-    <div>DashboardPabe</div>
+    <div>
+      DashboardPage
+      <button onClick={() => signOut({callbackUrl: "/"})}>
+        Sign out
+      </button>
+    </div>
   )
 }
