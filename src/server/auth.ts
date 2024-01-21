@@ -25,6 +25,10 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "database",
   },
+  pages: {
+    signIn: "/auth",
+    newUser: "/dashboard",
+  },
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,

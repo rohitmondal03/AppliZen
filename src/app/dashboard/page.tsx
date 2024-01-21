@@ -1,14 +1,10 @@
-"use client"
-
-import { signOut } from "next-auth/react"
-
-export default function DashboardPage() {
+export default async function DashboardPage() {
   return (
     <div>
       DashboardPage
-      <button onClick={() => signOut({callbackUrl: "/"})}>
+      {/* <button onClick={() => signOut({callbackUrl: "/"})}>
         Sign out
-      </button>
+      </button> */}
     </div>
   )
 }

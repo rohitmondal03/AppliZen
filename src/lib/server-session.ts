@@ -5,13 +5,5 @@ import { authOptions } from "../server/auth";
 
 export const getServerAuthSession = async () => {
   const session = await getServerSession(authOptions)
-
-  const user = session?.user;
-
-  return {
-    userId: user?.id,
-    userName: user?.name,
-    userEmail: user?.email,
-    userProfilePic: user?.image,
-  }
+  return session?.user;
 }
