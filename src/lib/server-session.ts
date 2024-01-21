@@ -10,7 +10,7 @@ export const getServerAuthSession = async () => {
 
   return {
     userId: user?.id,
-    userName: user?.image,
+    userName: user?.name,
     userEmail: user?.email,
     userProfilePic: user?.image,
   }
