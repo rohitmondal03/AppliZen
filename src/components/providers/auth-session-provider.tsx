@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { TLayout } from "types";
 
 
-export default function AuthSessionProviders({children}: TLayout) {
+export default function AuthSessionProvider({children}: TLayout) {
   return (
     <SessionProvider>
       {children}

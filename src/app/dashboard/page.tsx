@@ -1,10 +1,11 @@
-export default async function DashboardPage() {
+import SignOutButton from "~/components/buttons/sign-out-button"
+
+export default function DashboardPage() {
   return (
     <div>
       DashboardPage
-      {/* <button onClick={() => signOut({callbackUrl: "/"})}>
-        Sign out
-      </button> */}
+
+      <SignOutButton />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { TLayout } from 'types'
+import type { TLayout } from 'types'
 import { getServerAuthSession } from '~/lib/server-session'
 
 
