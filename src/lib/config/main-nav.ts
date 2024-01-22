@@ -13,6 +13,6 @@ export const mainNavContent= [
   },
   {
     label: "Make Resume",
-    href: "/new-resume"
+    href: "/make-resume"
   }
 ]
