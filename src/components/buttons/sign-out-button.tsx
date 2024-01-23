@@ -1,10 +1,16 @@
 "use client"
 
+import dynamic from 'next/dynamic'
 import { signOut } from 'next-auth/react'
-import React from 'react'
 
 import { Button } from '../ui/button'
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
+import { Dialog, DialogTrigger } from '../ui/dialog'
+
+const DialogContent= dynamic(() => import("../ui/dialog").then((mod) => mod.DialogContent))
+const DialogFooter= dynamic(() => import("../ui/dialog").then((mod) => mod.DialogFooter))
+const DialogHeader= dynamic(() => import("../ui/dialog").then((mod) => mod.DialogHeader))
+const DialogTitle= dynamic(() => import("../ui/dialog").then((mod) => mod.DialogTitle))
+
 
 export default function SignOutButton() {
   return (

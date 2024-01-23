@@ -34,7 +34,7 @@ export default function RootLayout({ children }: TLayout) {
             <Navbar />
             <main className={classNames({
               "py-20 px-32": true,
-              "min-h-screen": true,
+              "min-h-screen w-full": true,
             })}>
               {children}
             </main>

@@ -7,9 +7,11 @@ import { mainNavContent } from "~/lib/config/main-nav";
 import { cn } from "~/lib/utils";
 import { useAuth } from "~/hooks/use-auth";
 import Logo from "./logo";
+import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { ModeToggle } from "../buttons/mode-toggle-button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import SignOutButton from "../buttons/sign-out-button";
 
 
 export default function Navbar() {
@@ -31,7 +33,11 @@ export default function Navbar() {
             <Link
               key={data.href}
               href={data.href}
-              className="dark:text-muted-foreground dark:hover:text-white transition-all duration-300 ease-out"
+              className={classNames({
+                "text-muted-foreground": true,
+                "hover:text-black dark:hover:text-white hover:underline": true,
+                "transition-all duration-300 ease-out": true,
+              })}
             >
               {data.label}
             </Link>
@@ -43,13 +49,15 @@ export default function Navbar() {
         "flex items-center justify-center gap-16": true,
       })}>
         {isAuthenticated === "authenticated" ? (
-          <Avatar>
-            <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
-            <AvatarImage
-              src={(userProfilePic)}
-              alt="profile-pic of applizen user"
-            />
-          </Avatar>
+          <Link href={"/dashboard"} className="cursor-pointer hover:scale-110 transition ease-out">
+            <Avatar>
+              <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
+              <AvatarImage
+                src={(userProfilePic)}
+                alt="profile-pic of applizen user"
+              />
+            </Avatar>
+          </Link>
         ) : (
           <Link
             href={"/auth"}

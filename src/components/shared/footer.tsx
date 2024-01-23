@@ -20,7 +20,7 @@ export default function Footer() {
         <Link href={"https://next-auth.js.org"} className='underline font-bold'>next-auth</Link>.
         Hosted on {" "}
         <Link href={"https://vercel.com"} className='underline font-bold'>Vercel</Link>.
-        Database ORM - {" "}
+        Database ORM- {" "}
         <Link href={"https://prisma.io"} className='underline font-bold'>Prisma</Link>.
         Components by {" "}
         <Link href={"https://ui.shadcn.com/"} className='underline font-bold'>shadcnUI</Link>.

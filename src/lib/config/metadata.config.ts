@@ -1,7 +1,17 @@
 import { type Metadata } from "next";
 
-import { WEBSITE_DESC, WEBSITE_KEYWORDS, WEBSITE_LINK, WEBSITE_TITLE } from "./website-data.config";
-import { TWITTER_USERNAME } from "./personal-data.config"
+import {
+  WEBSITE_DESC,
+  WEBSITE_KEYWORDS,
+  WEBSITE_LINK,
+  WEBSITE_TITLE
+} from "./website-data.config";
+import {
+  GITHUB_LINK,
+  NAME,
+  TWITTER_USERNAME,
+} from "./personal-data.config"
+import { getServerAuthSession } from "../server-session";
 
 
 export const RootMetadata: Metadata = {
@@ -12,6 +22,10 @@ export const RootMetadata: Metadata = {
   generator: "Next.js",
   metadataBase: new URL(WEBSITE_LINK),
   keywords: WEBSITE_KEYWORDS,
+  authors: {
+    name: NAME,
+    url: GITHUB_LINK
+  },
   appleWebApp: {
     title: WEBSITE_TITLE,
     statusBarStyle: "default",
@@ -33,19 +47,92 @@ export const RootMetadata: Metadata = {
 };
 
 
-export const MakeResumePageMetadata: Metadata= {
-  title: "Make Resume || AppliZen",
+export const MakeResumePageMetadata: Metadata = {
+  title: "Make Resume | AppliZen",
   description: "Make new Resume with AppliZen and share it with a single link.",
+  keywords: [
+    ...WEBSITE_KEYWORDS,
+    "make resume",
+    "new resume",
+    "resume maker",
+    "resume",
+    "shareable link resume",
+    "applizen resume maker",
+  ]
 }
 
 
-export const PricingPageMetadata: Metadata= {
-  title: "Pricing",
-  description: "Pay a very minimal one-time subsription and get access to all services of AppliZen"
+export const PricingPageMetadata: Metadata = {
+  title: "Pricing | AppliZen",
+  description: "Pay a very minimal one-time subsription and get access to all services of AppliZen",
+  keywords: [
+    ...WEBSITE_KEYWORDS,
+    "applizen pricing",
+    "pricing",
+  ]
 }
 
 
-export const FeaturesPageMetadata: Metadata= {
-  title: "Features",
-  description: "Explore features of our website AppliZen."
+export const FeaturesPageMetadata: Metadata = {
+  title: "Features | AppliZen",
+  description: "Explore features of our website AppliZen.",
+  keywords: [
+    ...WEBSITE_KEYWORDS,
+    "features of applizen",
+    "applizen feature",
+    "features",
+    "services of applizen",
+    "services provided by applizen",
+  ]
+}
+
+
+export const DocsPageMetadata: Metadata = {
+  title: "Documentation | AppliZen",
+  description: "A very simple docs of AppliZen, to have a very good understanding of what the services offer.",
+  keywords: [
+    ...WEBSITE_KEYWORDS,
+    "features of applizen",
+    "applizen feature",
+    "features",
+    "services of applizen",
+    "services provided by applizen",
+  ]
+}
+
+
+export async function DashboardPageMetadata(): Promise<Metadata> {
+  const session = await getServerAuthSession();
+
+  const user = session?.user;
+  const userName = user?.name;
+  // const userEmail = user?.email;
+  // const userPic = user?.image;
+
+  return {
+    title: `${userName}'s Dashboard`,
+    description: "AppliZen's dashboard",
+    // icons: [`${userPic}`],
+    keywords: [
+      ...WEBSITE_KEYWORDS,
+      "applizen dashboard",
+      "dashboard of applizen",
+      "my applizen dashboard",
+      "dashboard",
+      "track my application in applizen",
+    ]
+  }
+}
+
+
+export const AuthPageMetadata: Metadata = {
+  title: "SignIn to AppliZen",
+  description: "SignIn to applizen and have seamless experience in keeping track of all your job application.",
+  keywords: [
+    ...WEBSITE_KEYWORDS,
+    "signin to applizen",
+    "signup to applizen",
+    "login to applizen",
+    "make new ccount in applizen",
+  ]
 }
