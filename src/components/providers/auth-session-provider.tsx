@@ -2,7 +2,7 @@
 
 import { SessionProvider } from "next-auth/react";
 
-import { TLayout } from "types";
+import type { TLayout } from "types";
 
 
 export default function AuthSessionProvider({children}: TLayout) {

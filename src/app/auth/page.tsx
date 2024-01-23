@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { Button } from "~/components/ui/button";
 
 
-export default async function AuthPage() {
+export default function AuthPage() {
   return (
     <section>
       <h1>Auth Page</h1>

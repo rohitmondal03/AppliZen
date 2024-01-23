@@ -10,8 +10,6 @@ import Logo from "./logo";
 import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import SignOutButton from "../buttons/sign-out-button";
 
 
 export default function Navbar() {

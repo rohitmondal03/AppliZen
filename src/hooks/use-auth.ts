@@ -5,9 +5,9 @@ export const useAuth = () => {
 
   return {
     isAuthenticated: s.status,
-    userName: s.data?.user.name || undefined,
-    userEmail: s.data?.user.email || undefined,
-    userId: s.data?.user.id || undefined,
-    userProfilePic: s.data?.user.image || undefined
+    userName: String(s.data?.user.name),
+    userEmail: String(s.data?.user.email),
+    userId: String(s.data?.user.id),
+    userProfilePic: String(s.data?.user.image)
   }
 }

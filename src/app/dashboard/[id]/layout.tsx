@@ -1,4 +1,4 @@
-import { TLayout } from 'types'
+import type { TLayout } from 'types'
 
 export default async function DashboardLayout({ children }: TLayout) {
   return (

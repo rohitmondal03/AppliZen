@@ -1,4 +1,4 @@
-import { TLayout } from "types";
+import type { TLayout } from "types";
 import { MakeResumePageMetadata } from "~/lib/config/metadata.config";
 
 
