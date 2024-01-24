@@ -1,12 +1,8 @@
-export const mainNavContent= [
+export const mainNavContent = [
   {
     label: "Features",
     href: "/features",
   },
-  {
-    label: "Docs",
-    href: "/docs",
-  }, 
   {
     label: "Pricing",
     href: "/pricing"
@@ -14,5 +10,9 @@ export const mainNavContent= [
   {
     label: "Make Resume",
     href: "/make-resume"
-  }
+  },
+  {
+    label: " Job Application Tracker",
+    href: "/job-app-tracker",
+  },
 ]
