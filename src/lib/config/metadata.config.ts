@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 
+import { getServerAuthSession } from "../server-session";
 import {
   WEBSITE_DESC,
   WEBSITE_KEYWORDS,
@@ -11,7 +12,6 @@ import {
   NAME,
   TWITTER_USERNAME,
 } from "./personal-data.config"
-import { getServerAuthSession } from "../server-session";
 
 
 export const RootMetadata: Metadata = {
@@ -88,7 +88,7 @@ export const FeaturesPageMetadata: Metadata = {
 
 
 export const JobApplicationTrackerPageMetadata: Metadata = {
-  title: "Track your application details...",
+  title: "Track your applications",
   description: "A very simple docs of AppliZen, to have a very good understanding of what the services offer.",
   keywords: [
     ...WEBSITE_KEYWORDS,
@@ -111,7 +111,6 @@ export async function DashboardPageMetadata(): Promise<Metadata> {
   return {
     title: `${userName}'s Dashboard`,
     description: "AppliZen's dashboard",
-    // icons: [`${userPic}`],
     keywords: [
       ...WEBSITE_KEYWORDS,
       "applizen dashboard",

@@ -5,6 +5,7 @@ import type { TLayout } from "types";
 import { RootMetadata } from "~/lib/config/metadata.config";
 import AuthSessionProvider from "~/components/providers/auth-session-provider";
 import { ThemeProvider } from "~/components/providers/theme-provider";
+import ToolTipProvider from "~/components/providers/tooltip-provider";
 import Navbar from "~/components/shared/navbar";
 import Footer from "~/components/shared/footer";
 import "~/styles/globals.css";
@@ -31,14 +32,16 @@ export default function RootLayout({ children }: TLayout) {
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            <main className={classNames({
-              "py-20 px-32": true,
-              "min-h-screen w-full": true,
-            })}>
-              {children}
-            </main>
-            <Footer />
+            <ToolTipProvider>
+              <Navbar />
+              <main className={classNames({
+                "py-20 px-32": true,
+                "min-h-screen w-full": true,
+              })}>
+                {children}
+              </main>
+              <Footer />
+            </ToolTipProvider>
           </ThemeProvider>
         </AuthSessionProvider>
       </body>

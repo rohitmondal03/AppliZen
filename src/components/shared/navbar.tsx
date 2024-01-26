@@ -10,6 +10,7 @@ import Logo from "./logo";
 import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 
 export default function Navbar() {
@@ -47,14 +48,22 @@ export default function Navbar() {
         "flex items-center justify-center gap-16": true,
       })}>
         {isAuthenticated === "authenticated" ? (
-          <Link href={"/dashboard"} className="cursor-pointer hover:scale-110 transition ease-out">
-            <Avatar>
-              <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
-              <AvatarImage
-                src={(userProfilePic)}
-                alt="profile-pic of applizen user"
-              />
-            </Avatar>
+          <Link
+            href={"/dashboard"}
+            className="cursor-pointer hover:scale-110 transition ease-out"
+          >
+            <Tooltip>
+              <TooltipTrigger>
+                <Avatar>
+                  <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
+                  <AvatarImage
+                    src={(userProfilePic)}
+                    alt="profile-pic of applizen user"
+                  />
+                </Avatar>
+              </TooltipTrigger>
+              <TooltipContent>Your Dashboard</TooltipContent>
+            </Tooltip>
           </Link>
         ) : (
           <Link
