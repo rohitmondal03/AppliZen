@@ -8,4 +8,15 @@ type TLayout = {
   children: ReactNode
 }
 
-type TNewJobStatus = z.infer<typeof newJobStatusSchema>
+type TNewJobStatus = {
+  title: string;
+  companyName: string;
+  interviewDate: Date;
+  applicationSubmissionDate: Date;
+  expectedCTCorSTIPEND: number;
+  companyContact: string;
+  notes: string;
+  offerType: "INTERN" | "FULL-TIME" | "CONTRACT" | "Other";
+  applicationStatus: "REJECTED", "ON PROGRESS", "ACCEPTED", "SELECTED";
+  applicatioMethod: "LinkedIn", "Twitter", "Cold-emailing", "Referral", "Career Portal", "Networking event", "Job boarding websites", "Any other";
+}

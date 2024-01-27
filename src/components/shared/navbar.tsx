@@ -50,7 +50,12 @@ export default function Navbar() {
         {isAuthenticated === "authenticated" ? (
           <Link
             href={"/dashboard"}
-            className="cursor-pointer hover:scale-110 transition ease-out"
+            className={classNames({
+              "cursor-pointer": true,
+              "transition ease-out": true,
+              "hover:scale-110": true,
+              "mt-2": true,
+            })}
           >
             <Tooltip>
               <TooltipTrigger>

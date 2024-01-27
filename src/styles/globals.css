@@ -74,3 +74,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* custom styles */
+::-webkit-scrollbar{
+  width: 0;
+}
+
+::-webkit-scrollbar-track{
+  width: 0;
+}
