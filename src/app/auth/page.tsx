@@ -13,6 +13,11 @@ export default function AuthPage() {
       <Button onClick={() => signIn("github", { callbackUrl: "/dashboard" })}>
         Signin with Github
       </Button>
+
+      <Button onClick={() => signIn("discord", { callbackUrl: "/dashboard" })}>
+        Signin with Discord
+      </Button>
+
     </section>
   )
 }

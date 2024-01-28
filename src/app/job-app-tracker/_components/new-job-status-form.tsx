@@ -22,20 +22,25 @@ import {
 import { Separator } from "~/components/ui/separator";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Textarea } from "~/components/ui/textarea";
+import { submitJobStatus } from "~/actions/submit-job-status";
 
 
 export default function NewJobStatusForm() {
   const [applDate, setApplDate] = useState<Date>();
   const [submissionDate, setSubmissionDate] = useState<Date>();
+  const [interviewDate, setInterviewDate] = useState<Date>();
 
   return (
     <DialogContent>
-      <form className={classNames({
-        "space-y-7": true,
-        "h-[70vh]": true,
-        "overflow-y-scroll": true,
-        "py-3": true,
-      })}>
+      <form
+        // action={() => submitJobStatus()}
+        className={classNames({
+          "space-y-7": true,
+          "h-[70vh]": true,
+          "overflow-y-scroll": true,
+          "py-3": true,
+        })}
+      >
         <div>
           <Label>Title</Label>
           <Input
@@ -49,58 +54,62 @@ export default function NewJobStatusForm() {
 
 
         <div>
-          <Label>Company's name</Label>
+          <Label>Company&apos;s name</Label>
           <Input
             placeholder="Company's name..."
             autoComplete="off"
             autoCapitalize="on"
             className="mx-auto w-[99%]"
+            required
           />
         </div>
 
 
-        <div className="flex items-center justify-between">
-          {/* <Label>Application Date:</Label> */}
-          <DatePicker
-            date={applDate}
-            setDate={setApplDate}
-            placeholder="Pick application date"
-          />
-        </div>
-
-
-        <div className="flex items-center justify-between">
-          {/* <Label>Submission deadline:</Label> */}
-          <DatePicker
-            date={submissionDate}
-            setDate={setSubmissionDate}
-            placeholder="Pick submission deadline"
-          />
-        </div>
-
-
-        <Separator />
-        <section className="grid grid-cols-2 gap-5">
+        <section className="space-y-5">
           <div className="flex items-center justify-between">
-            {/* <Label>Application Method</Label> */}
+            <DatePicker
+              date={applDate}
+              setDate={setApplDate}
+              placeholder="Pick application date"
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <DatePicker
+              date={submissionDate}
+              setDate={setSubmissionDate}
+              placeholder="Pick submission deadline"
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <DatePicker
+              date={interviewDate}
+              setDate={setInterviewDate}
+              placeholder="Pick interview date"
+            />
+          </div>
+        </section>
+
+
+        <section className="grid grid-cols-2 gap-5">
+          <div className="flex items-center justify-between mx-auto w-[99%]">
             <Select onValueChange={(val) => console.log(val)}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select a method..." />
+                <SelectValue placeholder="How you got offer ?" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Career's Portal">Career's Portal</SelectItem>
+                <SelectItem value="Career's Portal">Career&apos;s Portal</SelectItem>
                 <SelectItem value="Cold-Emailing">Cold-Emailing</SelectItem>
                 <SelectItem value="Twitter">Twitter</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-
-          <div className="flex items-center justify-between">
-            {/* <Label>Application Status</Label> */}
-            <Select onValueChange={(val) => console.log(val)}>
+          <div className="flex items-center justify-between mx-auto w-[99%]">
+            <Select onValueChange={(val) => console.log(val)} required>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Status of application" />
+                <SelectValue placeholder="Application status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Rejected">Rejected</SelectItem>
@@ -110,10 +119,8 @@ export default function NewJobStatusForm() {
             </Select>
           </div>
 
-
-          <div className="flex items-center justify-between">
-            {/* <Label>Offer Type</Label> */}
-            <Select onValueChange={(val) => console.log(val)}>
+          <div className="flex items-center justify-between mx-auto w-[99%]">
+            <Select onValueChange={(val) => console.log(val)} required>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Offer Type" />
               </SelectTrigger>
@@ -124,18 +131,16 @@ export default function NewJobStatusForm() {
               </SelectContent>
             </Select>
           </div>
-
         </section>
-        <Separator />
 
 
         <div>
           <Label>Company Contact</Label>
-          <Input
+          <Textarea
             placeholder="Enter any company's contact, email or phn number, etc"
-            autoComplete="off"
-            autoCapitalize="on"
             className="mx-auto w-[99%]"
+            rows={10}
+            cols={10}
           />
         </div>
 
@@ -143,7 +148,7 @@ export default function NewJobStatusForm() {
         <div>
           <Label>Expecetd CTC or Stipend/month</Label>
           <Input
-            placeholder="Expecetd CTC or Stipend/month.."
+            placeholder="Expecetd CTC or Stipend/month (You can leave it empty !!)"
             autoComplete="off"
             autoCapitalize="on"
             className="mx-auto w-[99%]"
@@ -159,87 +164,11 @@ export default function NewJobStatusForm() {
             className="mx-auto w-[99%]"
           />
         </div>
+
+        <DialogFooter>
+          <SubmiNewJobStatusButton />
+        </DialogFooter>
       </form>
     </DialogContent>
   )
 }
-
-
-{/* <Form {...newJobStatusForm}>
-        <form
-          onSubmit={newJobStatusForm.handleSubmit(submitJobStatus)}
-          className="space-y-6"
-        >
-          <FormField
-            control={newJobStatusForm.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="dark:text-red-500">Title</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter title..."
-                    autoComplete="off"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="dark:text-red-500" />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={newJobStatusForm.control}
-            name="companyName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Company Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter company's name"
-                    autoComplete="off"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}>
-          </FormField>
-
-          <FormField
-            control={newJobStatusForm.control}
-            name="applicationSubmissionDate"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Application submission date</FormLabel>
-                <FormControl>
-                  <DatePicker  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}>
-          </FormField>
-
-          <DialogFooter>
-            <SubmiNewJobStatusButton />
-          </DialogFooter>
-        </form>
-</Form> */}
-
-
-// const newJobStatusForm = useForm<TNewJobStatus>({
-//   resolver: zodResolver(newJobStatusSchema),
-//   defaultValues: {
-//     title: "",
-//     companyName: "",
-//     companyContact: "",
-//     notes: "",
-//     applicatioMethod: "Job boarding websites",
-//     applicationStatus: "ON PROGRESS",
-//     interviewDate: new Date(),
-//     applicationSubmissionDate: new Date(),
-//     offerType: "FULL-TIME",
-//     expectedCTCorSTIPEND: 200000,
-//   },
-// })
-
