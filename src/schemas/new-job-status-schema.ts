@@ -16,7 +16,7 @@ export const newJobStatusSchema = z.object({
   }),
   offerType: z.enum(["INTERN", "FULL-TIME", "CONTRACT", "Other"]),
   applicationStatus: z.enum(["REJECTED", "ON PROGRESS", "ACCEPTED", "SELECTED"]),
-  applicatioMethod: z.enum(["LinkedIn", "Twitter", "Cold-emailing", "Referral", "Career Portal", "Networking event", "Job boarding websites", "Any other"]),
+  applicationMethod: z.enum(["LinkedIn", "Twitter", "Cold-emailing", "Referral", "Career Portal", "Networking event", "Job boarding websites", "Any other"]),
   expectedCTCorSTIPEND: z.number(),
   companyContact: z.string(),
   notes: z.string(),

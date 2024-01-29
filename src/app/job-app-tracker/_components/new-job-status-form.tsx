@@ -70,15 +70,7 @@ export default function NewJobStatusForm() {
             <DatePicker
               date={applDate}
               setDate={setApplDate}
-              placeholder="Pick application date"
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <DatePicker
-              date={submissionDate}
-              setDate={setSubmissionDate}
-              placeholder="Pick submission deadline"
+              placeholder="Application submission date"
             />
           </div>
 
@@ -86,7 +78,7 @@ export default function NewJobStatusForm() {
             <DatePicker
               date={interviewDate}
               setDate={setInterviewDate}
-              placeholder="Pick interview date"
+              placeholder="Interview date (if applicable)"
             />
           </div>
         </section>
@@ -135,23 +127,22 @@ export default function NewJobStatusForm() {
 
 
         <div>
-          <Label>Company Contact</Label>
-          <Textarea
-            placeholder="Enter any company's contact, email or phn number, etc"
-            className="mx-auto w-[99%]"
-            rows={10}
-            cols={10}
-          />
-        </div>
-
-
-        <div>
           <Label>Expecetd CTC or Stipend/month</Label>
           <Input
             placeholder="Expecetd CTC or Stipend/month (You can leave it empty !!)"
             autoComplete="off"
             autoCapitalize="on"
             className="mx-auto w-[99%]"
+          />
+        </div>
+
+        <div>
+          <Label>Company Contact</Label>
+          <Textarea
+            placeholder="Enter company's contact, email or phn number, or anything else..."
+            className="mx-auto w-[99%]"
+            rows={10}
+            cols={10}
           />
         </div>
 
