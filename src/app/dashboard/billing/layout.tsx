@@ -1,6 +1,6 @@
 import type { TLayout } from 'types'
 
-export default async function DashboardLayout({ children }: TLayout) {
+export default async function BillingPageLayout({ children }: TLayout) {
   return (
     <>
       {children}

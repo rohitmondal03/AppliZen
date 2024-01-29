@@ -1,6 +1,7 @@
 import { type ReactNode } from "react"
 import { z } from "zod"
 
+import type { offerType, applicationMethod, applicationStatus } from "@prisma/client"
 
 type TLayout = {
   children: ReactNode
@@ -15,7 +16,7 @@ type TNewJobStatus = {
   expectedCTCorSTIPEND: number;
   companyContact: string;
   notes: string;
-  // offerType: offerType;
-  // applicationStatus: applicationStatus;
-  // applicatioMethod: appplicationMethod;
+  offerType: offerType;
+  applicationStatus: applicationStatus;
+  applicationMethod: applicationMethod;
 }

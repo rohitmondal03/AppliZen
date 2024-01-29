@@ -52,7 +52,7 @@ export default async function JobApplicationTracker() {
               <CardHeader>{det.companyName}</CardHeader>
               <CardContent>
                 <p>Title: {det.title}</p>
-                <p>Application Submittion date: {String(det.applicationSubmissionDate)}</p>
+                <p>Offer Type: {det.offerType}</p>
               </CardContent>
               <CardFooter className="flex justify-between items-center">
                 <Button>Share <Share2Icon className="ml-3" /></Button>
@@ -62,12 +62,12 @@ export default async function JobApplicationTracker() {
           ))}
         </div>
       ) : (
-        <p className="text-xl text-red-500">No job status added yet...!!</p>
+        <p className="text-lg text-rose-500">No job status added yet...!!</p>
       )}
 
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="font-bold">
+          <Button variant={"default"} className="font-bold">
             Add new Status <PlusCircledIcon className="ml-3" />
           </Button>
         </DialogTrigger>

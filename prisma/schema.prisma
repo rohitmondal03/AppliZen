@@ -85,11 +85,12 @@ enum applicationStatus {
 }
 
 enum applicationMethod {
-  ColdEmailing
-  Twitter
-  LinkedIn
-  Referral
   CareerPortal
-  RecruitmentAgency
+  ColdEmailing
+  LinkedIn
+  Twitter
+  Referral
+  JobPostingSites
+  NetworkingEvent
   Other
 }

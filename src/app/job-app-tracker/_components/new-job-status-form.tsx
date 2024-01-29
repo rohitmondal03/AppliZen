@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react";
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import classNames from "classnames";
 
 
@@ -30,6 +28,20 @@ export default function NewJobStatusForm() {
   const [submissionDate, setSubmissionDate] = useState<Date>();
   const [interviewDate, setInterviewDate] = useState<Date>();
 
+  const [jobStatus, setJobStatus] = useState<TNewJobStatus>({
+    notes: "",
+    title: "",
+    applicationFillingDate: new Date(),
+    applicationSubmissionDate: new Date(),
+    companyName: "",
+    interviewDate: new Date(),
+    expectedCTCorSTIPEND: 0,
+    companyContact: "",
+    applicationMethod: "CareerPortal",
+    applicationStatus: "Rejected",
+    offerType: "Intern",
+  });
+
   return (
     <DialogContent>
       <form
@@ -49,7 +61,8 @@ export default function NewJobStatusForm() {
             autoCapitalize="on"
             autoFocus={true}
             className="mx-auto w-[99%]"
-          />
+            value={jobStatus.title}
+            />
         </div>
 
 
@@ -60,16 +73,18 @@ export default function NewJobStatusForm() {
             autoComplete="off"
             autoCapitalize="on"
             className="mx-auto w-[99%]"
+            value={jobStatus.companyName}
             required
           />
         </div>
 
+        <Separator />
 
         <section className="space-y-5">
           <div className="flex items-center justify-between">
             <DatePicker
-              date={applDate}
-              setDate={setApplDate}
+              date={jobStatus.applicationSubmissionDate}
+              setDate={(e) => setJobStatus((prev) => ({...prev}))}
               placeholder="Application submission date"
             />
           </div>
@@ -83,6 +98,7 @@ export default function NewJobStatusForm() {
           </div>
         </section>
 
+        <Separator />
 
         <section className="grid grid-cols-2 gap-5">
           <div className="flex items-center justify-between mx-auto w-[99%]">
@@ -93,7 +109,12 @@ export default function NewJobStatusForm() {
               <SelectContent>
                 <SelectItem value="Career's Portal">Career&apos;s Portal</SelectItem>
                 <SelectItem value="Cold-Emailing">Cold-Emailing</SelectItem>
+                <SelectItem value="LinkedIn">LinkedIn</SelectItem>
                 <SelectItem value="Twitter">Twitter</SelectItem>
+                <SelectItem value="Referral">Referral</SelectItem>
+                <SelectItem value="Job Posting Sites">Job Posting Sites</SelectItem>
+                <SelectItem value="Networking Event">Networking Event</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -124,6 +145,8 @@ export default function NewJobStatusForm() {
             </Select>
           </div>
         </section>
+
+        <Separator />
 
 
         <div>

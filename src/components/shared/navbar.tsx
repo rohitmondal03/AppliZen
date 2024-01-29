@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import classNames from "classnames";
+import { PersonIcon, IdCardIcon } from "@radix-ui/react-icons"
 
 import { mainNavContent } from "~/lib/config/main-nav";
 import { cn } from "~/lib/utils";
@@ -10,7 +11,7 @@ import Logo from "./logo";
 import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "../ui/dropdown-menu";
 
 
 export default function Navbar() {
@@ -48,28 +49,32 @@ export default function Navbar() {
         "flex items-center justify-center gap-16": true,
       })}>
         {isAuthenticated === "authenticated" ? (
-          <Link
-            href={"/dashboard"}
-            className={classNames({
-              "cursor-pointer": true,
-              "transition ease-out": true,
-              "hover:scale-110": true,
-              "mt-2": true,
-            })}
-          >
-            <Tooltip>
-              <TooltipTrigger>
-                <Avatar>
-                  <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
-                  <AvatarImage
-                    src={(userProfilePic)}
-                    alt="profile-pic of applizen user"
-                  />
-                </Avatar>
-              </TooltipTrigger>
-              <TooltipContent>Your Dashboard</TooltipContent>
-            </Tooltip>
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar>
+                <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
+                <AvatarImage
+                  src={(userProfilePic)}
+                  alt="profile-pic of applizen user"
+                />
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Link className="flex items-center justify-between" href={"/dashboard"}>
+                  <PersonIcon className="mr-3" /> Dashboard
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  className="flex items-center justify-between"
+                  href={"/dashboard/billing"}
+                >
+                  <IdCardIcon className="mr-3" />Billing
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <Link
             href={"/auth"}
