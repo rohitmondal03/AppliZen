@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import classNames from "classnames";
+import type { applicationMethod, applicationStatus, offerType } from "@prisma/client"
 
 
 import type { TNewJobStatus } from "types";
+import { submitJobStatus } from "~/actions/submit-job-status";
 import { DatePicker } from "~/components/date-picker";
 import SubmiNewJobStatusButton from "~/components/buttons/submit-job-status-button";
 import { Input } from "~/components/ui/input";
-import { DialogContent, DialogFooter } from "~/components/ui/dialog";
 import { Label } from "~/components/ui/label";
+import { Textarea } from "~/components/ui/textarea";
+import { Separator } from "~/components/ui/separator";
+import { DialogContent, DialogFooter } from "~/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -17,29 +21,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
-import { Separator } from "~/components/ui/separator";
-import { ScrollArea } from "~/components/ui/scroll-area";
-import { Textarea } from "~/components/ui/textarea";
-import { submitJobStatus } from "~/actions/submit-job-status";
 
 
 export default function NewJobStatusForm() {
-  const [applDate, setApplDate] = useState<Date>();
   const [submissionDate, setSubmissionDate] = useState<Date>();
   const [interviewDate, setInterviewDate] = useState<Date>();
 
   const [jobStatus, setJobStatus] = useState<TNewJobStatus>({
     notes: "",
     title: "",
-    applicationFillingDate: new Date(),
-    applicationSubmissionDate: new Date(),
     companyName: "",
-    interviewDate: new Date(),
     expectedCTCorSTIPEND: 0,
     companyContact: "",
-    applicationMethod: "CareerPortal",
+    applicationMethod: "Career_Portal",
     applicationStatus: "Rejected",
-    offerType: "Intern",
+    offerType: "Full_Time",
   });
 
   return (
@@ -62,7 +58,9 @@ export default function NewJobStatusForm() {
             autoFocus={true}
             className="mx-auto w-[99%]"
             value={jobStatus.title}
-            />
+            onChange={(e) => setJobStatus(prev => ({ ...prev, title: e.target.value }))}
+            required
+          />
         </div>
 
 
@@ -74,6 +72,7 @@ export default function NewJobStatusForm() {
             autoCapitalize="on"
             className="mx-auto w-[99%]"
             value={jobStatus.companyName}
+            onChange={(e) => setJobStatus((prev) => ({ ...prev, companyName: e.target.value }))}
             required
           />
         </div>
@@ -83,9 +82,9 @@ export default function NewJobStatusForm() {
         <section className="space-y-5">
           <div className="flex items-center justify-between">
             <DatePicker
-              date={jobStatus.applicationSubmissionDate}
-              setDate={(e) => setJobStatus((prev) => ({...prev}))}
-              placeholder="Application submission date"
+              date={submissionDate}
+              setDate={setSubmissionDate}
+              placeholder="Application submission  deadline (optional)"
             />
           </div>
 
@@ -102,44 +101,55 @@ export default function NewJobStatusForm() {
 
         <section className="grid grid-cols-2 gap-5">
           <div className="flex items-center justify-between mx-auto w-[99%]">
-            <Select onValueChange={(val) => console.log(val)}>
+            <Select
+              value={jobStatus.applicationMethod}
+              onValueChange={(val) => setJobStatus((prev) => ({ ...prev, applicationMethod: val as applicationMethod }))}
+            >
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="How you got offer ?" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Career's Portal">Career&apos;s Portal</SelectItem>
-                <SelectItem value="Cold-Emailing">Cold-Emailing</SelectItem>
+                <SelectItem value="Career_Portal">Career Portal</SelectItem>
+                <SelectItem value="Cold_Emailing">Cold Emailing</SelectItem>
                 <SelectItem value="LinkedIn">LinkedIn</SelectItem>
                 <SelectItem value="Twitter">Twitter</SelectItem>
                 <SelectItem value="Referral">Referral</SelectItem>
-                <SelectItem value="Job Posting Sites">Job Posting Sites</SelectItem>
-                <SelectItem value="Networking Event">Networking Event</SelectItem>
+                <SelectItem value="Job_Posting_Sites">Job Posting Sites</SelectItem>
+                <SelectItem value="Networking_Event">Networking Event</SelectItem>
                 <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="flex items-center justify-between mx-auto w-[99%]">
-            <Select onValueChange={(val) => console.log(val)} required>
+            <Select
+              value={jobStatus.applicationStatus}
+              onValueChange={(val) => setJobStatus((prev) => ({ ...prev, applicationStatus: val as applicationStatus }))}
+              required
+            >
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Application status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Rejected">Rejected</SelectItem>
-                <SelectItem value="On Progress">On Progress</SelectItem>
+                <SelectItem value="On_Progress">On Progress</SelectItem>
                 <SelectItem value="Selected">Selected</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="flex items-center justify-between mx-auto w-[99%]">
-            <Select onValueChange={(val) => console.log(val)} required>
+            <Select
+              value={jobStatus.offerType}
+              onValueChange={(val) => setJobStatus(prev => ({ ...prev, offerType: val as offerType }))}
+              required
+            >
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Offer Type" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="Full_Time">Full Time</SelectItem>
                 <SelectItem value="Intern">Intern</SelectItem>
-                <SelectItem value="Full Time">Full Time</SelectItem>
                 <SelectItem value="Contract">Contract</SelectItem>
               </SelectContent>
             </Select>
@@ -148,7 +158,6 @@ export default function NewJobStatusForm() {
 
         <Separator />
 
-
         <div>
           <Label>Expecetd CTC or Stipend/month</Label>
           <Input
@@ -156,6 +165,8 @@ export default function NewJobStatusForm() {
             autoComplete="off"
             autoCapitalize="on"
             className="mx-auto w-[99%]"
+            value={Number(jobStatus.expectedCTCorSTIPEND)}
+            onChange={(e) => setJobStatus(prev => ({ ...prev, expectedCTCorSTIPEND: Number(e.target.value) }))}
           />
         </div>
 
@@ -166,6 +177,8 @@ export default function NewJobStatusForm() {
             className="mx-auto w-[99%]"
             rows={10}
             cols={10}
+            value={String(jobStatus.companyContact)}
+            onChange={(e) => setJobStatus((prev => ({ ...prev, companyContact: e.target.value })))}
           />
         </div>
 
@@ -176,6 +189,8 @@ export default function NewJobStatusForm() {
             rows={10}
             cols={10}
             className="mx-auto w-[99%]"
+            value={String(jobStatus.notes)}
+            onChange={(e) => setJobStatus((prev) => ({...prev,  notes : e.target.value}))}
           />
         </div>
 

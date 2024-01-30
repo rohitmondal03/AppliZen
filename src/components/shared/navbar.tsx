@@ -50,7 +50,7 @@ export default function Navbar() {
       })}>
         {isAuthenticated === "authenticated" ? (
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild className="cursor-pointer">
               <Avatar>
                 <AvatarFallback>{userName?.charAt(0)}</AvatarFallback>
                 <AvatarImage

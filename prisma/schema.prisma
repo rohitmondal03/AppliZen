@@ -74,23 +74,23 @@ model JobStatus {
 
 enum offerType {
   Intern
-  FullTime
+  Full_Time
   Contract
 }
 
 enum applicationStatus {
-  OnProgress
+  On_Progress
   Accepted
   Rejected
 }
 
 enum applicationMethod {
-  CareerPortal
-  ColdEmailing
+  Career_Portal
+  Cold_Emailing
   LinkedIn
   Twitter
   Referral
-  JobPostingSites
-  NetworkingEvent
+  Job_Posting_Sites
+  Networking_Event
   Other
 }

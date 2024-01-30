@@ -88,7 +88,7 @@ export const FeaturesPageMetadata: Metadata = {
 
 
 export const JobApplicationTrackerPageMetadata: Metadata = {
-  title: "Job Status Applciations",
+  title: "Job Status Application",
   description: "A very simple docs of AppliZen, to have a very good understanding of what the services offer.",
   keywords: [
     ...WEBSITE_KEYWORDS,
