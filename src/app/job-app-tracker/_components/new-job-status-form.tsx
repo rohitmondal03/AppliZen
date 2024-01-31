@@ -4,11 +4,9 @@ import { useState } from "react";
 import classNames from "classnames";
 import type { applicationMethod, applicationStatus, offerType } from "@prisma/client"
 
-
 import type { TNewJobStatus } from "types";
 import { submitJobStatus } from "~/actions/submit-job-status";
 import { DatePicker } from "~/components/date-picker";
-import { useAuth } from "~/hooks/use-auth";
 import SubmiNewJobStatusButton from "~/components/buttons/submit-job-status-button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -25,21 +23,19 @@ import {
 
 
 export default function NewJobStatusForm() {
-  const { userId } = useAuth()
+  const [submissionDate, setSubmissionDate] = useState<Date>();
+  const [interviewDate, setInterviewDate] = useState<Date>();
 
-  const [submissionDate, setSubmissionDate] = useState<Date>(new Date());
-  const [interviewDate, setInterviewDate] = useState<Date | null>(null);
-
-  const [jobStatus, setJobStatus] = useState<Pick<TNewJobStatus, "title" | "companyName" | "applicationMethod" | "companyContact" | "applicationStatus" | "notes" | "expectedCTCorSTIPEND" | "offerType">>({
-    notes: "",
-    title: "",
-    companyName: "",
-    expectedCTCorSTIPEND: 0,
-    companyContact: "",
-    applicationMethod: "Career_Portal",
-    applicationStatus: "Rejected",
-    offerType: "Full_Time",
-  });
+  const [jobStatus, setJobStatus] = useState<Omit<TNewJobStatus, "applicationSubmissionDate" | "interviewDate" | "userId" | "id">>({
+      notes: "",
+      title: "",
+      companyName: "",
+      expectedCTCorSTIPEND: 0,
+      companyContact: "",
+      applicationMethod: "Career_Portal",
+      applicationStatus: "Accepted",
+      offerType: "Full_Time",
+    });
 
 
   return (
@@ -56,7 +52,6 @@ export default function NewJobStatusForm() {
           expectedCTCorSTIPEND: jobStatus.expectedCTCorSTIPEND,
           notes: jobStatus.notes,
           offerType: jobStatus.offerType,
-          userId: userId,
         })}
         className={classNames({
           "space-y-7": true,
@@ -96,19 +91,19 @@ export default function NewJobStatusForm() {
         <Separator />
 
         <section className="space-y-5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-1">
             <DatePicker
               date={submissionDate}
               setDate={setSubmissionDate}
-              placeholder="Application submission deadline (optional)"
+              placeholder="Application submission deadline"
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-1">
             <DatePicker
               date={interviewDate}
               setDate={setInterviewDate}
-              placeholder="Interview date (if applicable)"
+              placeholder="Interview date (optional)"
             />
           </div>
         </section>
@@ -149,7 +144,7 @@ export default function NewJobStatusForm() {
               <SelectContent>
                 <SelectItem value="Rejected">Rejected</SelectItem>
                 <SelectItem value="On_Progress">On Progress</SelectItem>
-                <SelectItem value="Selected">Selected</SelectItem>
+                <SelectItem value="Accepted">Selected</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -193,8 +188,8 @@ export default function NewJobStatusForm() {
             className="mx-auto w-[99%]"
             rows={10}
             cols={10}
-            value={String(jobStatus.companyContact)}
-            onChange={(e) => setJobStatus((prev => ({ ...prev, companyContact: e.target.value })))}
+            value={jobStatus.companyContact}
+            onChange={(e) => setJobStatus(((prev) => ({ ...prev, companyContact: e.target.value })))}
           />
         </div>
 
@@ -205,7 +200,7 @@ export default function NewJobStatusForm() {
             rows={10}
             cols={10}
             className="mx-auto w-[99%]"
-            value={String(jobStatus.notes)}
+            value={jobStatus.notes}
             onChange={(e) => setJobStatus((prev) => ({ ...prev, notes: e.target.value }))}
           />
         </div>

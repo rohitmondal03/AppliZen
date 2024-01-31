@@ -4,9 +4,9 @@ import classNames from "classnames"
 import { db } from "~/server/db"
 import { getServerAuthSession } from "~/lib/server-session"
 import NewJobStatusForm from "./_components/new-job-status-form"
+import JobStatusCard from "./_components/job-status-card";
 import { Button } from "~/components/ui/button"
 import { Dialog, DialogTrigger } from "~/components/ui/dialog"
-import { Card, CardContent, CardFooter, CardHeader } from "~/components/ui/card"
 
 
 export default async function JobApplicationTracker() {
@@ -25,6 +25,7 @@ export default async function JobApplicationTracker() {
       offerType: true,
       applicationSubmissionDate: true,
       interviewDate: true,
+      jobStatusId: true,
     }
   })
 
@@ -48,17 +49,13 @@ export default async function JobApplicationTracker() {
           "grid grid-cols-3 gap-5": true,
         })}>
           {getJobStatusOfUser.map((det) => (
-            <Card>
-              <CardHeader>{det.companyName}</CardHeader>
-              <CardContent>
-                <p>Title: {det.title}</p>
-                <p>Offer Type: {det.offerType}</p>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center">
-                <Button>Share <Share2Icon className="ml-3" /></Button>
-                <Button>Delete <TrashIcon className="ml-3" /></Button>
-              </CardFooter>
-            </Card>
+            <JobStatusCard
+              key={det.jobStatusId}
+              companyName={det.companyName}
+              jobStatusId={det.jobStatusId}
+              offerType={det.offerType}
+              title={det.title}
+            />
           ))}
         </div>
       ) : (
