@@ -7,16 +7,21 @@ import { db } from "~/server/db";
 
 
 export async function submitJobStatus(data: TNewJobStatus) {
-  console.log(data);
-  // revalidatePath("/job-app-tracker", "page")
-
   await db.jobStatus.create({
     data: {
       title: data.title,
       companyName: data.companyName,
+      applicationMethod: data.applicationMethod,
+      applicationStatus: data.applicationStatus,
+      interviewDate: data.interviewDate,
+      applicationSubmissionDate: data.applicationSubmissionDate,
+      offerType: data.offerType,
+      companyContact: data.companyContact,
+      expectedCTCorSTIPEND: data.expectedCTCorSTIPEND,
+      notes: data.notes,
+      userId: data.userId
     },
-    include: {
-
-    }
   })
+
+  revalidatePath("/job-app-tracker")
 }

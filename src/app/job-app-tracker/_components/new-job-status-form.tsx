@@ -8,6 +8,7 @@ import type { applicationMethod, applicationStatus, offerType } from "@prisma/cl
 import type { TNewJobStatus } from "types";
 import { submitJobStatus } from "~/actions/submit-job-status";
 import { DatePicker } from "~/components/date-picker";
+import { useAuth } from "~/hooks/use-auth";
 import SubmiNewJobStatusButton from "~/components/buttons/submit-job-status-button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -24,10 +25,12 @@ import {
 
 
 export default function NewJobStatusForm() {
-  const [submissionDate, setSubmissionDate] = useState<Date>();
-  const [interviewDate, setInterviewDate] = useState<Date>();
+  const { userId } = useAuth()
 
-  const [jobStatus, setJobStatus] = useState<TNewJobStatus>({
+  const [submissionDate, setSubmissionDate] = useState<Date>(new Date());
+  const [interviewDate, setInterviewDate] = useState<Date | null>(null);
+
+  const [jobStatus, setJobStatus] = useState<Pick<TNewJobStatus, "title" | "companyName" | "applicationMethod" | "companyContact" | "applicationStatus" | "notes" | "expectedCTCorSTIPEND" | "offerType">>({
     notes: "",
     title: "",
     companyName: "",
@@ -38,10 +41,23 @@ export default function NewJobStatusForm() {
     offerType: "Full_Time",
   });
 
+
   return (
     <DialogContent>
       <form
-        // action={() => submitJobStatus()}
+        action={() => submitJobStatus({
+          title: jobStatus.title,
+          companyName: jobStatus.companyName,
+          applicationMethod: jobStatus.applicationMethod,
+          applicationStatus: jobStatus.applicationStatus,
+          interviewDate: interviewDate,
+          applicationSubmissionDate: submissionDate,
+          companyContact: jobStatus.companyContact,
+          expectedCTCorSTIPEND: jobStatus.expectedCTCorSTIPEND,
+          notes: jobStatus.notes,
+          offerType: jobStatus.offerType,
+          userId: userId,
+        })}
         className={classNames({
           "space-y-7": true,
           "h-[70vh]": true,
@@ -84,7 +100,7 @@ export default function NewJobStatusForm() {
             <DatePicker
               date={submissionDate}
               setDate={setSubmissionDate}
-              placeholder="Application submission  deadline (optional)"
+              placeholder="Application submission deadline (optional)"
             />
           </div>
 
@@ -190,7 +206,7 @@ export default function NewJobStatusForm() {
             cols={10}
             className="mx-auto w-[99%]"
             value={String(jobStatus.notes)}
-            onChange={(e) => setJobStatus((prev) => ({...prev,  notes : e.target.value}))}
+            onChange={(e) => setJobStatus((prev) => ({ ...prev, notes: e.target.value }))}
           />
         </div>
 

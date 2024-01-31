@@ -55,7 +55,7 @@ model VerificationToken {
 }
 
 model JobStatus {
-  id                        String            @id @default(cuid())
+  id                        String            @id @default(uuid())
   title                     String
   companyName               String
   interviewDate             DateTime?

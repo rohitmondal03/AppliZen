@@ -9,7 +9,7 @@ export default function SubmiNewJobStatusButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit">
+    <Button type="submit" className="font-bold">
       {pending ? "Submitting..." : "Submit new form"}
     </Button>
   )

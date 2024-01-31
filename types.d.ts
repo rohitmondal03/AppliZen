@@ -22,4 +22,4 @@ type TLayout = {
 // }
 
 
-type TNewJobStatus = JobStatus
+type TNewJobStatus = Omit<TNewJobStatus | "id">
