@@ -16,7 +16,7 @@ export default function SignOutButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Sign Out</Button>
+        <Button className='font-bold'>Sign Out</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

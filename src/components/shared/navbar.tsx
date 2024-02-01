@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import classNames from "classnames";
-import { PersonIcon, IdCardIcon } from "@radix-ui/react-icons"
 
-import { mainNavContent } from "~/lib/config/main-nav";
+import { avatarNavDropdown, mainNavContent } from "~/lib/config/main-nav";
 import { cn } from "~/lib/utils";
 import { useAuth } from "~/hooks/use-auth";
 import Logo from "./logo";
 import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 
 export default function Navbar() {
@@ -60,19 +59,13 @@ export default function Navbar() {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                <Link className="flex items-center justify-between" href={"/dashboard"}>
-                  <PersonIcon className="mr-3" /> Dashboard
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link
-                  className="flex items-center justify-between"
-                  href={"/dashboard/billing"}
-                >
-                  <IdCardIcon className="mr-3" />Billing
-                </Link>
-              </DropdownMenuItem>
+              {avatarNavDropdown.map((items) => (
+                <DropdownMenuItem>
+                  <Link className="flex items-center justify-between" href={items.path}>
+                    <items.Icon className="mr-3" /> {items.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (

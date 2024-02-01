@@ -84,3 +84,20 @@
 ::-webkit-scrollbar-track{
   width: 0;
 }
+
+
+.page_container {
+  @apply space-y-16;
+}
+
+.head_div {
+  @apply space-y-5;
+}
+
+.head_div > h1 {
+  @apply text-4xl font-bold;
+}
+
+.head_div > p {
+  @apply text-muted-foreground max-w-[70vw];
+}

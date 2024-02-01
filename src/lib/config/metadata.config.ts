@@ -95,7 +95,6 @@ export const JobApplicationTrackerPageMetadata: Metadata = {
     "job application tracker",
     "applizen job application tracker",
     "job application status",
-    ""
   ]
 }
 
@@ -105,8 +104,6 @@ export async function DashboardPageMetadata(): Promise<Metadata> {
 
   const user = session?.user;
   const userName = user?.name;
-  // const userEmail = user?.email;
-  // const userPic = user?.image;
 
   return {
     title: `${userName}'s Dashboard`,
@@ -133,4 +130,10 @@ export const AuthPageMetadata: Metadata = {
     "login to applizen",
     "make new ccount in applizen",
   ]
+}
+
+
+export const SettingPageMetadata: Metadata= {
+  title: "Account Settings",
+  description: "Edit your profile details of AppliZen account."
 }

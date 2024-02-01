@@ -31,17 +31,15 @@ export default async function JobApplicationTracker() {
 
 
   return (
-    <section className={classNames({
-      "space-y-16": true,
-    })}>
-      <div className="space-y-3">
-        <h1 className={classNames({
-          "text-4xl font-bold": true,
-        })}>
+    <section className="page_container">
+      <div className="head_div">
+        <h1>
           Stay Organized with AppliZen
         </h1>
 
-        <p className="text-muted-foreground">Tell us more about your recent job application. Update the status, add interview details, and stay on top of your career journey.</p>
+        <p>
+          Tell us more about your recent job application. Update the status, add interview details, and stay on top of your career journey.
+        </p>
       </div>
 
       {getJobStatusOfUser?.length > 0 ? (
