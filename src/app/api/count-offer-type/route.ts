@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { offerType } from "@prisma/client"
+import type { offerType } from "@prisma/client"
 
 import { db } from "~/server/db";
 

@@ -38,13 +38,13 @@ export default function OfferTypeCard({ userId }: { userId: string }) {
         })
       })
         .then(res => res.json())
-        .then(val => setOfferCount(val))
+        .then((val: number) => setOfferCount(val))
 
       setLoading(false);
     }
 
-    countOfferType();
-  }, [offerType])
+    void countOfferType();
+  }, [offerType, userId])
 
 
   return (

@@ -38,13 +38,13 @@ export default function ApplciationStatusCard({ userId }: { userId: string }) {
         }),
       })
         .then((resp) => resp.json())
-        .then((count) => setApplicationStatusCount(count))
+        .then((count: number) => setApplicationStatusCount(count))
 
       setLoading(false);
     }
 
-    countApplicationStatus();
-  }, [applicationStatus])
+    void countApplicationStatus();
+  }, [applicationStatus, userId])
 
 
   const status = useMemo(() => {

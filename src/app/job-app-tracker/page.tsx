@@ -1,4 +1,4 @@
-import { PlusCircledIcon, Share2Icon, TrashIcon } from "@radix-ui/react-icons";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 import classNames from "classnames"
 
 import { db } from "~/server/db"

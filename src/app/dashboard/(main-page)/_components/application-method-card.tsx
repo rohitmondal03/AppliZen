@@ -38,13 +38,13 @@ export default function ApplicationMethodCard({ userId }: { userId: string }) {
         })
       })
         .then(res => res.json())
-        .then(val => setApplicationMethodCount(val))
+        .then((val: number) => setApplicationMethodCount(val))
 
       setLoading(false);
     }
 
-    countApplicationMethod();
-  }, [applicationMethod])
+    void countApplicationMethod();
+  }, [applicationMethod, userId])
 
 
   const method = useMemo(() => {

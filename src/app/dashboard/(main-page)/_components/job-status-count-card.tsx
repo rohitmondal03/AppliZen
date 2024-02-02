@@ -23,13 +23,13 @@ export default function JobStatusCountCard({ userId }: { userId: string }) {
         body: JSON.stringify({ userId })
       })
         .then(res => res.json())
-        .then(val => setJobStatusCount(val))
+        .then((val: number) => setJobStatusCount(val))
 
       setLoading(false);
     }
 
-    countOfferType();
-  }, [])
+    void countOfferType();
+  }, [userId])
 
 
   return (

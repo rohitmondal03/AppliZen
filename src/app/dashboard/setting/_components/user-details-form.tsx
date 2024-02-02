@@ -19,15 +19,15 @@ export default function UserDetailsForm(
   const [userName, setName] = useState<string>(name);
   const [userEmail, setEmail] = useState<string>(email);
 
-  let oldName = name;
-  let oldEmail = email;
+  const oldName = name;
+  const oldEmail = email;
 
   const isSubmitButtonDisabled = useMemo(() => {
     return (userName.trim() === oldName && userEmail.trim() === oldEmail) ||
       userName.length === 0 ||
       userEmail.length === 0;
   },
-    [userName, userEmail]
+    [userName, userEmail, oldEmail, oldName]
   )
 
   return (

@@ -69,9 +69,8 @@ export default function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {avatarNavDropdown.map((items) => (
-                <DropdownMenuItem>
+                <DropdownMenuItem key={items.label}>
                   <Link
-                    key={items.label}
                     href={items.path}
                     className="flex items-center justify-between"
                   >
