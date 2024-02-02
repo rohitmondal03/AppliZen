@@ -1,10 +1,13 @@
+"use client"
+
 import Link from "next/link";
-import useSWR from "swr"
 import { TrashIcon } from "@radix-ui/react-icons"
 import type { offerType } from "@prisma/client"
 
 import { Button } from "~/components/ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "~/components/ui/card"
+import { Dialog, DialogHeader, DialogClose, DialogTrigger, DialogContent, DialogFooter } from "~/components/ui/dialog";
+import { deleteJobStatus } from "~/actions/delete-job-status";
 
 
 type TProps = {
@@ -28,12 +31,32 @@ export default function JobStatusCard(
         </CardContent>
       </Link>
       <CardFooter className="flex justify-end items-center">
-        <Button
-          variant={"destructive"}
-          className="font-bold"
-        >
-          Delete <TrashIcon className="ml-2" />
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant={"destructive"}
+              className="font-bold"
+            >
+              Delete <TrashIcon className="ml-2" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader className="font-bold text-lg">
+              Are you sure you want to delete this job status ?
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose>
+                <Button
+                  variant={"destructive"}
+                  className="font-bold"
+                  onClick={() => deleteJobStatus(jobStatusId)}
+                >
+                  Yes
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </CardFooter>
     </Card>
   )

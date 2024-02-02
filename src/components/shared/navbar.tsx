@@ -1,20 +1,31 @@
 "use client"
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
-import { avatarNavDropdown, mainNavContent } from "~/lib/config/main-nav";
 import { cn } from "~/lib/utils";
 import { useAuth } from "~/hooks/use-auth";
+import { avatarNavDropdown, mainNavContent } from "~/lib/config/main-nav";
 import Logo from "./logo";
 import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 
 export default function Navbar() {
   const { isAuthenticated, userName, userProfilePic } = useAuth();
+  const pathName = usePathname();
 
 
   return (
@@ -30,13 +41,11 @@ export default function Navbar() {
         <div className="space-x-7">
           {mainNavContent.map((data) => (
             <Link
-              key={data.href}
+              key={data.label}
               href={data.href}
-              className={classNames({
-                "text-muted-foreground": true,
-                "hover:text-black dark:hover:text-white hover:underline": true,
-                "transition-all duration-300 ease-out": true,
-              })}
+              className={cn(buttonVariants({
+                variant: pathName === data.href ? "secondary" : "link"
+              }))}
             >
               {data.label}
             </Link>
@@ -61,7 +70,10 @@ export default function Navbar() {
             <DropdownMenuContent>
               {avatarNavDropdown.map((items) => (
                 <DropdownMenuItem>
-                  <Link className="flex items-center justify-between" href={items.path}>
+                  <Link
+                    className="flex items-center justify-between"
+                    href={items.path}
+                  >
                     <items.Icon className="mr-3" /> {items.label}
                   </Link>
                 </DropdownMenuItem>

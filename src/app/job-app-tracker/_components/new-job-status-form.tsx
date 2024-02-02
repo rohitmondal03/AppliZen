@@ -12,7 +12,7 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { Separator } from "~/components/ui/separator";
-import { DialogContent, DialogFooter } from "~/components/ui/dialog";
+import { DialogClose, DialogContent, DialogFooter } from "~/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -27,15 +27,15 @@ export default function NewJobStatusForm() {
   const [interviewDate, setInterviewDate] = useState<Date>();
 
   const [jobStatus, setJobStatus] = useState<Omit<TNewJobStatus, "applicationSubmissionDate" | "interviewDate" | "userId" | "id">>({
-      notes: "",
-      title: "",
-      companyName: "",
-      expectedCTCorSTIPEND: 0,
-      companyContact: "",
-      applicationMethod: "Career_Portal",
-      applicationStatus: "Accepted",
-      offerType: "Full_Time",
-    });
+    notes: "",
+    title: "",
+    companyName: "",
+    expectedCTCorSTIPEND: 0,
+    companyContact: "",
+    applicationMethod: "Career_Portal",
+    applicationStatus: "Accepted",
+    offerType: "Full_Time",
+  });
 
 
   return (
@@ -206,7 +206,9 @@ export default function NewJobStatusForm() {
         </div>
 
         <DialogFooter>
-          <SubmiNewJobStatusButton />
+          <DialogClose>
+            <SubmiNewJobStatusButton />
+          </DialogClose>
         </DialogFooter>
       </form>
     </DialogContent>

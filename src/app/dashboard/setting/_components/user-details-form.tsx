@@ -25,7 +25,7 @@ export default function UserDetailsForm(
   let oldEmail = email;
 
   const isSubmitButtonDisabled = useMemo(() => {
-    return (userName === oldName && userEmail === oldEmail) ||
+    return (userName.trim() === oldName && userEmail.trim() === oldEmail) ||
       userName.length === 0 ||
       userEmail.length === 0;
   },

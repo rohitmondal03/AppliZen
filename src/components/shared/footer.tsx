@@ -7,7 +7,7 @@ import Logo from './logo'
 export default function Footer() {
   return (
     <footer className={classNames({
-      "flex items-center justify-start gap-x-8": true,
+      "flex items-center justify-start gap-x-4": true,
       "py-10 px-20": true,
       "text-[0.9rem]": true,
     })}>
