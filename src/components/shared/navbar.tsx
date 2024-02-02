@@ -38,7 +38,7 @@ export default function Navbar() {
       })}>
         <Logo />
 
-        <div className="space-x-7">
+        <div className="space-x-5">
           {mainNavContent.map((data) => (
             <Link
               key={data.label}
@@ -71,8 +71,9 @@ export default function Navbar() {
               {avatarNavDropdown.map((items) => (
                 <DropdownMenuItem>
                   <Link
-                    className="flex items-center justify-between"
+                    key={items.label}
                     href={items.path}
+                    className="flex items-center justify-between"
                   >
                     <items.Icon className="mr-3" /> {items.label}
                   </Link>

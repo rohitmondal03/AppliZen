@@ -1,13 +1,14 @@
 import Link from "next/link";
-import { Link1Icon } from "@radix-ui/react-icons"
 
-import { db } from "~/server/db";
 import { cn } from "~/lib/utils";
 import { getServerAuthSession } from "~/lib/server-session"
 import SignOutButton from "~/components/buttons/sign-out-button"
-import { buttonVariants } from "~/components/ui/button";
-import { Card, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import OfferTypeCard from "./_components/offertype-card";
+import JobStatusCountCard from "./_components/job-status-count-card";
+import ApplicationStatusCard from "./_components/application-status-card";
+import { buttonVariants } from "~/components/ui/button";
+import ApplicationMethodCard from "./_components/application-method-card";
+import classNames from "classnames";
 
 
 export default async function DashboardPage() {
@@ -16,13 +17,6 @@ export default async function DashboardPage() {
   const userName = user?.name;
   const userEmail = user?.email;
   const userId = user?.id
-
-
-  const jobStatusCount = await db.jobStatus.count({
-    where: {
-      userId: userId,
-    },
-  })
 
 
   return (
@@ -55,26 +49,13 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
-      <div className="flex flex-row items-center justify-around">
-        <Card className="w-fit border-gray-500">
-          <CardHeader>
-            <CardTitle className="text-xl font-thin">
-              Total no. of job status : <span className="font-bold">{jobStatusCount}</span>
-            </CardTitle>
-          </CardHeader>
-          <CardFooter>
-            <Link
-              href={"/job-app-tracker"}
-              className={cn(buttonVariants({
-                variant: "secondary",
-              }))}
-            >
-              See active status
-            </Link>
-          </CardFooter>
-        </Card>
-
+      <div className={classNames({
+        "grid grid-cols-2 items-center justify-center gap-5": true,
+      })}>
+        <JobStatusCountCard userId={String(userId)} />
         <OfferTypeCard userId={String(userId)} />
+        <ApplicationStatusCard userId={String(userId)} />
+        <ApplicationMethodCard userId={String(userId)} />
       </div>
     </section>
   )

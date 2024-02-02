@@ -101,3 +101,7 @@
 .head_div > p {
   @apply text-muted-foreground max-w-[70vw];
 }
+
+.dashboard_card {
+  @apply w-full border-gray-500 border-4;
+}

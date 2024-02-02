@@ -5,15 +5,13 @@ import classNames from "classnames"
 
 import { editProfile } from "~/actions/edit-profile"
 import EditProfileButton from "~/components/buttons/edit-profile-button"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
+import InputMockup from "./input-mockup"
 
 
 type TProps = {
   name: string;
   email: string;
 }
-
 
 export default function UserDetailsForm(
   { name, email }: TProps
@@ -57,39 +55,7 @@ export default function UserDetailsForm(
         value={userEmail}
       />
 
-      <EditProfileButton
-        isSubmitButtonDisabled={isSubmitButtonDisabled}
-      />
+      <EditProfileButton isSubmitButtonDisabled={isSubmitButtonDisabled} />
     </form>
-  )
-}
-
-
-type TInputMockupParams = {
-  id: string;
-  label: string;
-  value: string;
-  setDetail: (val: string) => void;
-}
-
-
-function InputMockup(
-  { id, label, value, setDetail }: TInputMockupParams
-) {
-  return (
-    <div className="">
-      <Label
-        htmlFor={id}
-        className="font-bold text-lg text-muted-foreground"
-      >
-        {label}
-      </Label>
-      <Input
-        id={id}
-        autoComplete="off"
-        value={value}
-        onChange={(e) => setDetail(e.target.value)}
-      />
-    </div>
   )
 }

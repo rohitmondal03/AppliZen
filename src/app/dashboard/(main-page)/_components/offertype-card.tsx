@@ -3,9 +3,19 @@
 import { useEffect, useState } from "react"
 import type { offerType } from "@prisma/client"
 
-import LoadingState from "~/app/loading"
-import { Card, CardHeader, CardFooter, CardTitle } from "~/components/ui/card"
-import { Select, SelectContent, SelectTrigger, SelectItem, SelectValue } from "~/components/ui/select"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "~/components/ui/card"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 
 export default function OfferTypeCard({ userId }: { userId: string }) {
@@ -19,9 +29,13 @@ export default function OfferTypeCard({ userId }: { userId: string }) {
       setLoading(true);
 
       await fetch("/api/count-offer-type", {
+        cache: "force-cache",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, offerType })
+        body: JSON.stringify({
+          userId,
+          offerType
+        })
       })
         .then(res => res.json())
         .then(val => setOfferCount(val))
@@ -34,10 +48,10 @@ export default function OfferTypeCard({ userId }: { userId: string }) {
 
 
   return (
-    <Card className="w-fit border-gray-500">
+    <Card className="dashboard_card">
       <CardHeader>
         <CardTitle className="text-xl font-thin">
-          {offerType === "Full_Time" ? "Full Time" : offerType} {" "}
+          Applied for {offerType === "Full_Time" ? "Full Time" : offerType} {" "}
           <span>Offers</span> : {" "}
           <span className="font-bold">{isLoading ? "..." : offerCount}</span>
         </CardTitle>
