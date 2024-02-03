@@ -1,5 +1,5 @@
 export default function MakeResumePage() {
   return (
-    <section>MakeResumePage</section>
+    <section>ResumePage</section>
   )
 }

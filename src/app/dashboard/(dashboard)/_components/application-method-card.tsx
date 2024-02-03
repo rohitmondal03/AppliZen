@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import useSWR from "swr"
 import type { applicationMethod } from "@prisma/client"
 
 import {
@@ -21,7 +22,7 @@ import {
 export default function ApplicationMethodCard({ userId }: { userId: string }) {
   const [applicationMethod, setApplicationMethod] = useState<applicationMethod>("Career_Portal");
   const [applicationMethodCount, setApplicationMethodCount] = useState<number>();
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading]= useState<boolean>(false);
 
 
   useEffect(() => {

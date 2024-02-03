@@ -8,8 +8,8 @@ import { cn } from "~/lib/utils";
 import { useAuth } from "~/hooks/use-auth";
 import { avatarNavDropdown, mainNavContent } from "~/lib/config/main-nav";
 import Logo from "./logo";
-import { ModeToggle } from "../buttons/mode-toggle-button";
 import { buttonVariants } from "../ui/button";
+import { ModeToggle } from "../buttons/mode-toggle-button";
 import {
   Avatar,
   AvatarFallback,
@@ -33,12 +33,12 @@ export default function Navbar() {
       "flex flex-row items-center justify-around": true,
       "py-8": true,
     })}>
-      <section className={classNames({
+      <div className={classNames({
         "flex items-center justify-center gap-10": true,
       })}>
         <Logo />
 
-        <div className="space-x-5">
+        <div className="space-x-3">
           {mainNavContent.map((data) => (
             <Link
               key={data.label}
@@ -51,7 +51,7 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-      </section>
+      </div>
 
       <div className={classNames({
         "flex items-center justify-center gap-16": true,
@@ -69,7 +69,10 @@ export default function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {avatarNavDropdown.map((items) => (
-                <DropdownMenuItem key={items.label}>
+                <DropdownMenuItem
+                  key={items.label}
+                  className="cursor-pointer"
+                >
                   <Link
                     href={items.path}
                     className="flex items-center justify-between"

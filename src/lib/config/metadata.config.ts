@@ -47,17 +47,12 @@ export const RootMetadata: Metadata = {
 };
 
 
-export const MakeResumePageMetadata: Metadata = {
-  title: "Make Resume | AppliZen",
+export const ResumePageMetadata: Metadata = {
+  title: "Resume | AppliZen",
   description: "Make new Resume with AppliZen and share it with a single link.",
   keywords: [
     ...WEBSITE_KEYWORDS,
-    "make resume",
-    "new resume",
-    "resume maker",
     "resume",
-    "shareable link resume",
-    "applizen resume maker",
   ]
 }
 

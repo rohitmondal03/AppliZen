@@ -60,7 +60,7 @@ export default function ApplciationStatusCard({ userId }: { userId: string }) {
     <Card className="dashboard_card">
       <CardHeader>
         <CardTitle className="text-xl font-thin">
-          {status} applications : {" "}
+          Applications {status} : {" "}
           <span className="font-bold">{isLoading ? "..." : applicationStatusCount}</span>
         </CardTitle>
       </CardHeader>

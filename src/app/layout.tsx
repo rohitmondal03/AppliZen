@@ -4,8 +4,8 @@ import classNames from "classnames";
 import type { TLayout } from "types";
 import { RootMetadata } from "~/lib/config/metadata.config";
 import AuthSessionProvider from "~/components/providers/auth-session-provider";
+import SmoothScrollProvider from "~/components/providers/smooth-scroll-provider";
 import { ThemeProvider } from "~/components/providers/theme-provider";
-import ToolTipProvider from "~/components/providers/tooltip-provider";
 import Navbar from "~/components/shared/navbar";
 import Footer from "~/components/shared/footer";
 import "~/styles/globals.css";
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: TLayout) {
             enableSystem
             disableTransitionOnChange
           >
-            <ToolTipProvider>
+            <SmoothScrollProvider>
               <Navbar />
               <main className={classNames({
                 "py-20 px-32": true,
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: TLayout) {
                 {children}
               </main>
               <Footer />
-            </ToolTipProvider>
+            </SmoothScrollProvider>
           </ThemeProvider>
         </AuthSessionProvider>
       </body>

@@ -20,8 +20,8 @@ export const mainNavContent = [
     href: "/pricing"
   },
   {
-    label: "Make Resume",
-    href: "/make-resume"
+    label: "Resume",
+    href: "/resume"
   },
   {
     label: " Job Application Tracker",
