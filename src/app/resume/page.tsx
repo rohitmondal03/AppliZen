@@ -1,20 +1,12 @@
-"use client"
-
-import { ChangeEvent, useState } from "react";
-
-import { uploadResume } from "~/actions/upload-resume";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
+import Form from "./_components/form";
 
 
-export default function MakeResumePage() {
-  const [file, setFile]= useState<FormData | null>(null)
-
+export default function ResumePage() {
   return (
     <section>
       ResumePage
 
-      
+      <Form />
     </section>
   )
 }

@@ -1,27 +1,30 @@
-"use server"
+// "use server"
 
 import { ChangeEvent } from "react"
 import UuidGenerator from "uuid-wand"
 
 import { getServerAuthSession } from "~/lib/server-session"
-import { supabaseClient } from "~/lib/supbase"
-import { db } from "~/server/db"
+import { supabaseClient } from "~/lib/supabase"
 
 
-export async function uploadResume(e: FormData) {
+export async function uploadResume(e: ChangeEvent<HTMLInputElement>) {
+  let file;
+
+  if (e.target.files) {
+    file = e.target.files[0];
+  }
+
   const uuid = UuidGenerator.v1();
   const session = await getServerAuthSession();
   const user = session?.user;
-  
-  const file= e;
 
   const { data, error } = await supabaseClient
     .storage
-    .from('bucket_name')
-    .upload(uuid + "/" + user?.id, file)
+    .from('resume')
+    .upload(uuid + "/" + user?.id, file as File)
 
   if (error) {
-    console.log(error)
+    console.log("Error", error.message)
   } else {
     console.log(data)
   }
