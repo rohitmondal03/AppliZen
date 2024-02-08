@@ -7,11 +7,11 @@ import { getServerAuthSession } from "~/lib/server-session"
 import { supabaseClient } from "~/lib/supabase"
 
 
-export async function uploadResume(e: ChangeEvent<HTMLInputElement>) {
-  let file;
+export async function uploadResume(e: File | undefined | null) {
+  let file: File | undefined;
 
-  if (e.target.files) {
-    file = e.target.files[0];
+  if (e) {
+    file = e;
   }
 
   const uuid = UuidGenerator.v1();
