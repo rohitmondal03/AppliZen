@@ -15,17 +15,23 @@ export async function uploadResume(e: File | undefined | null) {
   }
 
   const uuid = UuidGenerator.v1();
-  const session = await getServerAuthSession();
-  const user = session?.user;
+  // const session = await getServerAuthSession();
+  // const user = session?.user;
 
-  const { data, error } = await supabaseClient
-    .storage
-    .from('resume')
-    .upload(uuid + "/" + user?.id, file as File)
+  // const { data, error } = await supabaseClient
+  //   .storage
+  //   .from('resume')
+  //   .upload(uuid + "/" + user?.id, file as File)
 
-  if (error) {
-    console.log("Error", error.message)
-  } else {
-    console.log(data)
-  }
+  // if (error) {
+  //   console.log("Error", error.message)
+  // } else {
+  //   console.log(data)
+  // }
+
+  // try {
+  //   console.log(file);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 }
