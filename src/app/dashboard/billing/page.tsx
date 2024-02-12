@@ -17,9 +17,9 @@ export default function BillingPage() {
         <h1 className="text-4xl">Billing History</h1>
       </Card>
 
-      <Link href={"https://buy.stripe.com/test_9AQ9DE4Ao68j2c04gi"}>
+      {/* <Link href={"https://buy.stripe.com/test_9AQ9DE4Ao68j2c04gi"}>
         Buy now
-      </Link>
+      </Link> */}
     </section>
   )
 }
